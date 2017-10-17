@@ -1,0 +1,26 @@
+---
+title: "Leaflet presentation"
+author: "Simon Lidberg"
+date: "2017-10-17"
+output: 
+  html_document:
+    smart: no
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+require(leaflet)
+```
+
+## Creating maps
+Creating a map with random markers in Sweden.
+
+```{r clusters}
+df <- data.frame(lat = runif(500, min = 59.48, max = 59.81),
+                 lng = runif(500, min =  13, max = 18.05))
+
+df %>% 
+  leaflet() %>%
+  addTiles() %>%
+  addMarkers(clusterOptions = markerClusterOptions())
+```
